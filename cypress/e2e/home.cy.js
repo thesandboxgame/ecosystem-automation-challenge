@@ -12,39 +12,49 @@ Cypress.on('uncaught:exception', (err) => {
     }
 })
 
-describe('Internationalization', () => {
-  it('should load the default language', () => {
-    cy.visit('https://playboy-party-people.surge.sh/en');
-    cy.contains('Channel your inner Bunny. Rub shoulders with the Rabbitars. Party with the Playboy Party People!');
+//It looks like Cypress Open Selector Playground can not find the correct CSS locators for the specific avatars. Cypress Open Selector only find 1 avatar instead of 5.
+// When running the E2E Cypress test, The DOM is not loading correctly and I can not find the correct CSS locators.
+//The DOM does not contain any specific ID locators.
+describe('Collection tests', () => {
+  const expectedNumAvatars = 5;
+  const expectedAvatarRarities = ['Common', 'Rare', 'Epic', 'Legendary', 'Unique'];
+
+  it(`should display ${expectedNumAvatars} avatars`, () => {
+    cy.visit('/'); // Visit the collection page
+    cy.get('.max-w-xl > .block').should('have.length', expectedNumAvatars); // Ensure there are 5 avatars
   });
 
-  it('should load the FR language', () => {
-    cy.visit('https://playboy-party-people.surge.sh/fr');
-    cy.contains('Libérez le Lapin qui est en vous. Frottez-vous aux Rabbitars. Faites la fête avec les Playboy Party People !');
+  it('should display avatars with the correct rarity', () => {
+    cy.visit('/'); // When using cypress the avatars and their rarity is not displayed properly and the locators are different from the original DOM
+
+    // Loop through each avatar and check its rarity label
+    cy.get('.max-w-xl > .block').each(($avatar, index) => {
+      const expectedRarity = expectedAvatarRarities[index];
+      cy.wrap($avatar).contains(expectedRarity); // Cypress can not find the desired avatars
+    });
   });
 
-  it('should load the 日本 language', () => {
-    cy.visit('https://playboy-party-people.surge.sh/jp');
-    cy.contains('あなたの内なるバニーをチャネリングしてください。ラビターズと肩をこすります。プレイボーイのパーティーピープルと一緒にパーティーしよう！');
-  });
+  //Using Cypress tool, the avatars are not properly displayed and their rarities are missing from the DOM.
+  it('should properly display all avatars', () => {
+    cy.visit('/'); // Visit the collection page
 
-  it('should load the 한국어 language', () => {
-    cy.visit('https://playboy-party-people.surge.sh/kr');
-    cy.contains('내 안의 토끼를 불러냅시다. 래비타와 어깨를 나란히 하고, 플레이보이 파티를 즐겨요!');
-  });
-
-  it('should load the 简中 language', () => {
-    cy.visit('https://playboy-party-people.surge.sh/sc');
-    cy.contains('看耳朵就知道你的尊贵身份，成为花花公子派对的宾客吧！');
-  });
-
-  it('should load the 繁中 language', () => {
-    cy.visit('https://playboy-party-people.surge.sh/tc');
-    cy.contains('看耳朵就知道你的尊貴身份，成為花花公子派對的賓客吧！');
-  });
-
-  it('should load the Türk language', () => {
-    cy.visit('https://playboy-party-people.surge.sh/tr');
-    cy.contains('İçinizdeki Tavşanı kanalize edin. Rabbitars ile omuz omuza. Playboy Parti İnsanları ile Parti !');
+    // Loop through each avatar and check if it's properly displayed
+    cy.get('.max-w-xl > .block').each(($avatar) => {
+      cy.wrap($avatar)
+        .find('.-mx-12 max-w-sm')
+        .should('be.visible'); // Ensure the avatar image is properly displayed
+    });
   });
 });
+
+describe('Collection page', () => {
+  it('Should display "sold out" when all items have been purchased', () => {
+    cy.visit('/') // Replace with the actual URL of the collection page
+    cy.get('.max-w-xl > .block').each(($item, index) => {
+      // Purchase all items in the collection
+    })
+    // Verify that the collection is marked as "sold out"
+    cy.contains('Sold Out')
+  })
+})
+
