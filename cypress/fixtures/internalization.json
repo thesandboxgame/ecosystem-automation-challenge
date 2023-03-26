@@ -1,0 +1,23 @@
+[
+    {
+        "language": "EN",
+        "url": "https://playboy-party-people.surge.sh/en",
+        "headers": ["Home", "Collection", "Unique Avatars"]
+    },
+    {
+        "language": "FR",
+        "url": "https://playboy-party-people.surge.sh/fr",
+        "headers": ["Acceuil", "Collection", "Avatars Uniques"]
+    },
+    {
+        "language": "日本",
+        "url": "https://playboy-party-people.surge.sh/jp",
+        "headers": ["Home-jp", "Collection-jp", "Unique Avatars-jp"]
+    },
+    {
+        "language": "Türk",
+        "url": "https://playboy-party-people.surge.sh/tr",
+        "headers": ["Home", "Collection", "Unique Avatars"]
+    }
+
+]

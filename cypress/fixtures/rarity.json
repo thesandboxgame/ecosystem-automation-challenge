@@ -1,0 +1,27 @@
+[
+    {
+        "type": "Common",
+        "rarityPercentage": "Rarity 71%",
+        "text": "Here to party all night"
+    },
+    {
+        "type": "Rare",
+        "rarityPercentage": "Rarity 15%",
+        "text": "Standing out with style"
+    },
+    {
+        "type": "Epic",
+        "rarityPercentage": "Rarity 10%",
+        "text": "This ain't my first rodeo!"
+    },
+    {
+        "type": "Legendary",
+        "rarityPercentage": "Rarity 4%",
+        "text": "The cream of the crop"
+    },
+    {
+        "type": "Unique",
+        "rarityPercentage": "Rarity <1%",
+        "text": "One in 1,969"
+    }
+]
